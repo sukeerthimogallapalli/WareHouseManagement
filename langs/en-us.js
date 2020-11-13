@@ -16,6 +16,9 @@ module.exports.errors = {
     SOMETHING_WORNG: {
         message: 'Something went wrong,Please try after some time',
         code: 403
+    },EMAIL_EXIST_ALREADY:{
+        message:'Email you entered is already exsits',
+        code:200
     }
 
 }

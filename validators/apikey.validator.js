@@ -13,7 +13,7 @@ const validateApiKey = (req, res, next) => {
       err: "UNAUTHORIZED_API_KEY"
     });
   } else {
-    models.validateApiKey.re({
+    models.Apikey.read({
       "application": "apikey"
     })
       .then(doc => {
