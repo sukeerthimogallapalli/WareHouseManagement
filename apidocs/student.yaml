@@ -1,0 +1,28 @@
+swagger: '2.0'
+info:
+  title: Warehouse Mangement 
+  description: 'REST Apis for Warehouse Mangement'
+  version: '1.0.0'
+  title: "Warehouse Mangement"
+# host: "localhost:8000/"
+host: "isd-staging-api.mywaqf.com/"
+basePath: "api/v1"
+tags:
+- name: "user"
+  description: "Operations about user & apikey --> fxniA6uc5KYtLDirSMlTieFqDMhIZO5yMHLlnYxXMzBBTAjsCbA1JN3v0PhOx5VlrIRhyddh9JaU2lqttnEcZVcR9tQepWGTbt4PNgtRfVaPyBt5Bn6BNDXCciWbei2y"
+
+consumes:
+  - application/json
+  - "multipart/form-data"
+produces:
+  - application/json
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: X-API-Key
+    description: 'APP apikey ---> fxniA6uc5KYtLDirSMlTieFqDMhIZO5yMHLlnYxXMzBBTAjsCbA1JN3v0PhOx5VlrIRhyddh9JaU2lqttnEcZVcR9tQepWGTbt4PNgtRfVaPyBt5Bn6BNDXCciWbei2y'
+schemes:
+- "https"
+- "http"
+
