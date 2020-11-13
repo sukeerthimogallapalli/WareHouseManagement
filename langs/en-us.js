@@ -19,6 +19,12 @@ module.exports.errors = {
     },EMAIL_EXIST_ALREADY:{
         message:'Email you entered is already exsits',
         code:200
+    },INCORRECT_PWD:{
+        message:'Incorrect Password',
+        code:200
+    },USER_NOT_FOUND:{
+        message:'Requested email is not registered',
+        code:200
     }
 
 }

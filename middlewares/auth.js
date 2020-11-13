@@ -9,10 +9,11 @@ const generateToken = (config) => new Promise((resolve, reject) => {
 
     jwt.sign({
         data: config
-    }, /* privateKey, */ { algorithm: process.env.JWT_ALGORITHM,expiresIn: '2920h' }, (err, token) => {
+    }, /* privateKey, */ "hwut#@KwoRKV", (err, token) => {
         if (err) {
             reject({ err: "TRY_AGAIN" });
         } else {
+            console.log(token)
             resolve(token)
         }
 

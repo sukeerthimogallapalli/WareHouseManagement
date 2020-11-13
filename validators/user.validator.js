@@ -17,7 +17,13 @@ const models = require('../db/models')
  *                  "password":"",
  *                  "confirmPassword":""
  *                 }
- * @param {*} res 
+ * @param {*} res {
+                    "data": {},
+                    "success": true,
+                    "message": "Registration is successful",
+                    "status": 200
+                  }
+
  * @param {*} next 
  */
 
@@ -44,11 +50,11 @@ const validateRegistration = async (req, res, next) => {
 
     try {
 
-      const value = await registerSchema.validateAsync(req.body);
+      const value = await registerSchema.validateAsync(reqBody);
       if (value) {
-        const isEmailExist = await models.User.read({ email: req.body.email })
+        const isEmailExist = await models.User.read({ email: reqBody.email })
         if (isEmailExist) {
-          next({ err: 'EMAIL_EXIST_ALREADY' })
+          next({ err: 'EMAIL_EXISTS_ALREADY' })
         } else {
           next()
         }
@@ -60,14 +66,55 @@ const validateRegistration = async (req, res, next) => {
     } catch (err) {
       next({ err: err })
     }
-
-
-
-
   }
 }
+/**
+ * function to validate login data 
+ * @param {*} req {
+ *                  "email":"",
+ *                  "password":"",
+ *                 }
+ * @param {*} res {
+                    "data": {
+                        "_id": "5fae3c3d9fc560bdad11e2a6",
+                        "userType": "CUSTOMER",
+                        "status": "active",
+                        "firstName": "sukeerthi",
+                        "lastName": "M",
+                        "email": "msukeerthi1@gmail.com",
+                        "gender": "female",
+                        "createdAt": "2020-11-13T07:56:45.911Z",
+                        "updatedAt": "2020-11-13T07:56:45.911Z",
+                        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJUeXBlIjoiQ1VTVE9NRVIiLCJlbWFpbCI6Im1zdWtlZXJ0aGkxQGdtYWlsLmNvbSIsInN0YXR1cyI6ImFjdGl2ZSIsInVzZXJJZCI6IjVmYWUzYzNkOWZjNTYwYmRhZDExZTJhNiJ9LCJpYXQiOjE2MDUyNTU2MzV9.6WYTe7WjBWvKKWt9yIPUspO-rlO-XQizCr4hyAysFao"
+                    },
+                    "success": true,
+                    "message": "success",
+                    "status": 200
+                }
+ * @param {*} next 
+ */
+const validateLogin = async (req, res, next) => {
+  let reqBody = req.body;
+  const pwd = CryptoJS.AES.decrypt(reqBody.password, process.env.CRYPTO_SECRET);
+  const originalPwd = pwd.toString(CryptoJS.enc.Utf8);
+  reqBody.password = originalPwd;
+  let loginSchema = joi.object({
+    email: joi.string().regex(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/).required().error(new Error('INVALID_EMAIL')),
+    password: joi.string().min(7).required()
+  });
 
-
+  try {
+    const value = await loginSchema.validateAsync(reqBody);
+    if (value) {
+        next()
+    } else {
+      next({ err: 'Validation Error' })
+    }
+  } catch (err) {
+    next({ err: err })
+  }
+}
 module.exports = {
-  validateRegistration
+  validateRegistration,
+  validateLogin
 }

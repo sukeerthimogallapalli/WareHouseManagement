@@ -10,6 +10,7 @@ router.all('*', validator.ApiKeyValidator.validateApiKey);
 router.all('/secure*', Auth.checkHeaderAccessToken);
 
 router.post('/register', validator.UserValidator.validateRegistration, controllers.user.register);
+router.post('/login', validator.UserValidator.validateLogin, controllers.user.login);
 
 
 
