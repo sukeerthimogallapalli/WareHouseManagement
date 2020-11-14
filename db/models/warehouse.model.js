@@ -1,5 +1,5 @@
 'use strict';
-require('../schemas/warehouse.product.schema');
+require('../schemas/warehouse.schema');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const _ = require('lodash'),
@@ -13,21 +13,16 @@ const create = (config = {}) => {
   });
 };
 const read = (query, options = {}) => {
-  console.log(query,"sdfghjkl")
+  console.log(query,options)
   return new Promise((resolve, reject) => {
     if (options.multi) {
-      Warehouse.find(query, options.fields)
+      Warehouse.find(query)
         .skip(options.skip || 0)
         .limit(options.limit || 0)
         .exec((err, Warehouse) => err ? reject(err) : resolve(Warehouse))
-    } else if (options.populate) {
-      Warehouse.find(query, options.fields || {})
-        .skip(options.skip || 0)
-        .limit(options.limit || 0).populate(options.populate.name, options.populate.keys)
-        .exec((err, Warehouse) => err ? reject(err) : resolve(Warehouse))
     } else {
-      Warehouse.findOne(query, options.fields || {})
-        .lean().exec((err, Warehouse) => err ? reject(err) : resolve(Warehouse))
+      Warehouse.findOne(query)
+        .exec((err, Warehouse) => err ? reject(err) : resolve(Warehouse))
     }
   });
 };

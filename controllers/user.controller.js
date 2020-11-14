@@ -4,6 +4,25 @@ const models = require('../db/models')
 const services = require('../services')
 const auth = require('../middlewares/auth')
 
+/**
+ * function to validate registration data 
+ * @param {*} req {
+ *                  "firstName":"",
+ *                  "lastName":"",
+ *                  "email":"",
+ *                  "gender":"",
+ *                  "password":"",
+ *                  "confirmPassword":""
+ *                 }
+ * @param {*} res {
+                    "data": {},
+                    "success": true,
+                    "message": "Registration is successful",
+                    "status": 200
+                  }
+
+ * @param {*} next 
+ */
 
 
 const register = async (req, res, next) => {
@@ -26,9 +45,33 @@ const register = async (req, res, next) => {
         next({ err: e })
     }
 };
+/**
+ * function to validate login data 
+ * @param {*} req {
+ *                  "email":"",
+ *                  "password":"",
+ *                 }
+ * @param {*} res {
+                    "data": {
+                        "_id": "5fae3c3d9fc560bdad11e2a6",
+                        "userType": "CUSTOMER",
+                        "status": "active",
+                        "firstName": "sukeerthi",
+                        "lastName": "M",
+                        "email": "msukeerthi1@gmail.com",
+                        "gender": "female",
+                        "createdAt": "2020-11-13T07:56:45.911Z",
+                        "updatedAt": "2020-11-13T07:56:45.911Z",
+                        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJUeXBlIjoiQ1VTVE9NRVIiLCJlbWFpbCI6Im1zdWtlZXJ0aGkxQGdtYWlsLmNvbSIsInN0YXR1cyI6ImFjdGl2ZSIsInVzZXJJZCI6IjVmYWUzYzNkOWZjNTYwYmRhZDExZTJhNiJ9LCJpYXQiOjE2MDUyNTU2MzV9.6WYTe7WjBWvKKWt9yIPUspO-rlO-XQizCr4hyAysFao"
+                    },
+                    "success": true,
+                    "message": "success",
+                    "status": 200
+                }
+ * @param {*} next 
+ */
 const login = async (req, res, next) => {
     try {
-        req.body.status = "active"
         let reqBody = req.body;
         const data = await models.User.read({ email: reqBody.email, status: "active" })
         if (data) {

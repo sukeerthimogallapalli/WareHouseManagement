@@ -6,10 +6,16 @@ const WarehouseSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
-    },status: {
+    }, status: {
         enum: ['active', 'inactive', 'blocked'],
         type: String,
         default: 'active'
+    }, createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }, blockedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 
 }, {

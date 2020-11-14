@@ -37,6 +37,9 @@ module.exports.success = {
     REG_SUCCESS: {
         message: "Registration is successful",
         code: 200
+    },WAREHOUSE_SUCC:{
+        message:"Yeay! Warehouse created successfully",
+        code:200
     }
 
 }

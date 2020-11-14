@@ -1,6 +1,6 @@
 
 'use strict';
-require('../schemas/Product.product.schema');
+require('../schemas/product.schema');
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const _ = require('lodash'),

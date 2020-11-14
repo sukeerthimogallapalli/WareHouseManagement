@@ -12,6 +12,10 @@ router.all('/secure*', Auth.checkHeaderAccessToken);
 router.post('/register', validator.UserValidator.validateRegistration, controllers.user.register);
 router.post('/login', validator.UserValidator.validateLogin, controllers.user.login);
 
+router.post('/secure/warehouse/create', validator.Warehouse.validateAddWarehouse, controllers.warehouse.createWarehouse);
+router.get('/secure/warehouse/list/:key', validator.Warehouse.validateWarehouseKey, controllers.warehouse.listWarehouse);
+router.delete('/secure/warehouse/delete/:key', validator.Warehouse.validateWarehouseKey, controllers.warehouse.removeWarehouse);
+
 
 
 module.exports = router;
