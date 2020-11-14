@@ -31,6 +31,9 @@ module.exports.errors = {
     },QUAT_LESS_AVAIL:{
         message:'Available quatity is less than the requested quantiy',
         code:200
+    },EMAIL_EXISTS_ALREADY:{
+        message:'Oops! Looks like you already created account,please try to login',
+        code:200
     }
 
 }
