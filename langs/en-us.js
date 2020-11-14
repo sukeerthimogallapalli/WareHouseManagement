@@ -25,6 +25,12 @@ module.exports.errors = {
     },USER_NOT_FOUND:{
         message:'Requested email is not registered',
         code:200
+    },SEND_VALID_DATA:{
+        message:'Please send valid data',
+        code:200
+    },QUAT_LESS_AVAIL:{
+        message:'Available quatity is less than the requested quantiy',
+        code:200
     }
 
 }
@@ -39,6 +45,12 @@ module.exports.success = {
         code: 200
     },WAREHOUSE_SUCC:{
         message:"Yeay! Warehouse created successfully",
+        code:200
+    },ADD_STOCK_SUCC:{
+        message:"Yeay! Stock added successfully",
+        code:200
+    },ADD_UNSTOCK_SUCC:{
+        message:"Yeay! Stock removed successfully",
         code:200
     }
 

@@ -51,7 +51,7 @@ const validateRegistration = async (req, res, next) => {
     try {
 
       const value = await registerSchema.validateAsync(reqBody);
-      if (value) {
+
         const isEmailExist = await models.User.read({ email: reqBody.email })
         if (isEmailExist) {
           next({ err: 'EMAIL_EXISTS_ALREADY' })
@@ -59,10 +59,7 @@ const validateRegistration = async (req, res, next) => {
           next()
         }
 
-      } else {
-
-        next({ err: 'Validation Error' })
-      }
+      
     } catch (err) {
       next({ err: err })
     }
@@ -105,11 +102,7 @@ const validateLogin = async (req, res, next) => {
 
   try {
     const value = await loginSchema.validateAsync(reqBody);
-    if (value) {
-        next()
-    } else {
-      next({ err: 'Validation Error' })
-    }
+    next()
   } catch (err) {
     next({ err: err })
   }

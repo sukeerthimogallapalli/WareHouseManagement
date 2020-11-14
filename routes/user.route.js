@@ -16,6 +16,10 @@ router.post('/secure/warehouse/create', validator.Warehouse.validateAddWarehouse
 router.get('/secure/warehouse/list/:key', validator.Warehouse.validateWarehouseKey, controllers.warehouse.listWarehouse);
 router.delete('/secure/warehouse/delete/:key', validator.Warehouse.validateWarehouseKey, controllers.warehouse.removeWarehouse);
 
-
+router.post('/secure/product/create', validator.Product.validateAddProduct, controllers.product.createProduct);
+router.get('/secure/product/list/:key', validator.Warehouse.validateWarehouseKey, controllers.product.listProducts);
+router.delete('/secure/product/delete/:key', validator.Warehouse.validateWarehouseKey, controllers.product.removeProduct);
+router.post('/secure/product/stock', validator.Product.validateStock, controllers.product.addStock);
+router.post('/secure/product/unstock', validator.Product.validateUnstock, controllers.product.removeStock);
 
 module.exports = router;

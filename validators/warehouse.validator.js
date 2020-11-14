@@ -23,11 +23,8 @@ const validateAddWarehouse = async (req, res, next) => {
     });
     try {
         const value = await schema.validateAsync(reqBody);
-        if (value) {
-            next()
-        } else {
-            next({ err: 'Validation Error' })
-        }
+        next()
+       
     } catch (err) {
         next({ err: err })
     }
@@ -39,11 +36,8 @@ const validateWarehouseKey= async (req, res, next) => {
     });
     try {
         const value = await schema.validateAsync(req.params);
-        if (value) {
-            next()
-        } else {
-            next({ err: 'Validation Error' })
-        }
+        next()
+            
     } catch (err) {
         next({ err: err })
     }

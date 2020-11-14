@@ -6,7 +6,7 @@ const ProductSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
-    },wareHouseId:{
+    },warehouseId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Warehouse',
         required: true
@@ -14,6 +14,14 @@ const ProductSchema = new mongoose.Schema({
         enum: ['active', 'inactive', 'blocked'],
         type: String,
         default: 'active'
+    },price:{
+        type: Number,
+        required: true,
+        min:1
+    },quantity:{
+        type: Number,
+        required: true,
+        default:0
     }
 
 }, {

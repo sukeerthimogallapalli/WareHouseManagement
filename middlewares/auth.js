@@ -8,7 +8,7 @@ const jwtBlacklist = require('jwt-blacklist')//(jwt);
 const generateToken = (config) => new Promise((resolve, reject) => {
 
     jwt.sign({
-        data: config
+        data: config,exp: Math.floor(Date.now() / 1000) + (60 * 60),
     }, /* privateKey, */ process.env.JWT_SECRET, (err, token) => {
         if (err) {
             reject({ err: "TRY_AGAIN" });
