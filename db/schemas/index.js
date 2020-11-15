@@ -4,6 +4,7 @@ const User = require('./user.schema');
 const Warehouse = require('./warehouse.schema');
 const Product = require('./product.schema');
 const ProductInventory = require('./product.inventory.schema');
+const BlacklistToken = require('./blacklist.token.schema');
 
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
     User,
     Warehouse,
     Product,
-    ProductInventory
+    ProductInventory,
+    BlacklistToken
 }

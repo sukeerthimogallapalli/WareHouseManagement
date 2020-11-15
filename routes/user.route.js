@@ -21,5 +21,6 @@ router.get('/secure/product/list/:key', validator.Warehouse.validateWarehouseKey
 router.delete('/secure/product/delete/:key', validator.Warehouse.validateWarehouseKey, controllers.product.removeProduct);
 router.post('/secure/product/stock', validator.Product.validateStock, controllers.product.addStock);
 router.post('/secure/product/unstock', validator.Product.validateUnstock, controllers.product.removeStock);
+router.post('/secure/log-out', controllers.user.logout);
 
 module.exports = router;

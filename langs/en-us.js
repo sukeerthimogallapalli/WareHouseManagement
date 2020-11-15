@@ -55,6 +55,9 @@ module.exports.success = {
     },ADD_UNSTOCK_SUCC:{
         message:"Yeay! Stock removed successfully",
         code:200
+    },LOGOUT_SUCCESS:{
+        message:"Logged out successfully",
+        code:200
     }
 
 }

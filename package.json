@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "start-app": "nodemon ./bin/www",
-    "test": "mocha test/user.login.js"
+    "test": "mocha test/usecase.test.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",

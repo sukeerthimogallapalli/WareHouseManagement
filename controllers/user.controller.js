@@ -87,7 +87,7 @@ const login = async (req, res, next) => {
                     status: data.status,
                     userId: data._id,
                 })
-                data.accessToken=token
+                data.accessToken = token
                 if (token) {
                     res.body = {
                         data: data,
@@ -108,9 +108,24 @@ const login = async (req, res, next) => {
         next({ err: e })
     }
 };
+const logout = async (req, res, next) => {
+    console.log(req.User)
+    return models.BlacklistToken.create({ token: req.headers['x-access-token'], createdBy: req.User.email }).then(info => {
+       if(info){
+        res.body = {
+            message: "LOGOUT_SUCCESS"
+        }
+        next()
+       }else{
+           throw new Error('SOMETHING_WORNG')
+       }
+       
+    }).catch(next)
 
+}
 
 module.exports = {
     register,
-    login
+    login,
+    logout
 }

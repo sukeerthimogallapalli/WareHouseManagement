@@ -6,6 +6,7 @@ const Apikey = require('./apikey.model');
 const Warehouse = require('./warehouse.model');
 const Product = require('./product.model');
 const ProductInventory = require('./product.inventory.model');
+const BlacklistToken = require('./blacklist.token.model');
 
 
 module.exports={
@@ -14,5 +15,6 @@ module.exports={
     Apikey,
     Warehouse,
     Product,
-    ProductInventory
+    ProductInventory,
+    BlacklistToken
 }

@@ -11,7 +11,6 @@ let expect = chai.expect;
 
 describe('testcases for login api', function () {
     it('should throw error - Incorrect password', (done) => {
-        // this.timeout(50000)
         var apiUrl = '/api/v1/user/login'
 
         let obj = {
